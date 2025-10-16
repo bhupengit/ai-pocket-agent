@@ -1,50 +1,28 @@
-# Welcome to your Expo app 👋
+# 🤖 AI Pocket Agent
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+AI Pocket Agent is a smart, multi-purpose AI assistant app designed to help you with everyday tasks — from writing and coding to translation, productivity, and creativity — all in one intuitive interface.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- 📝 **Writing Assistant** — Write, rewrite, and improve any text effortlessly.  
+- 🧠 **Grammar & Translation Tools** — Fix grammar, translate text, and keep meaning intact.  
+- 🎨 **Image Generator** — Create stunning AI images from text prompts.  
+- 💻 **Code Assistant** — Generate, debug, and explain code in multiple languages.  
+- 📚 **Research & Summarization** — Summarize articles, notes, or long text in seconds.  
+- 🏋️ **Fitness & Productivity Coaches** — Plan workouts and daily tasks with AI support.  
+- 📸 **Caption Creator** — Generate catchy social media captions with hashtags.  
+- 🧒 **Storyteller Mode** — Create stories, poems, or bedtime tales for kids and adults.  
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🏗️ Tech Stack
 
-In the output, you'll find options to open the app in a
+- ⚛️ **React Native** — Cross-platform mobile development  
+- 💬 **OpenAI / Gemini API** — AI text and image generation  
+- 🔥 **Firebase Firestore** — Database and user storage  
+- 🪄 **Expo** — Simplified React Native environment  
+- 🎨 **Tailwind / Styled Components** — For clean and consistent UI
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
