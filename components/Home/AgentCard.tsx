@@ -6,7 +6,7 @@ type Props = {
     agent: Agent
 }
 
-type Agent = {
+export type Agent = {
     id: number,
     name: string,
     desc: string,
@@ -18,8 +18,10 @@ type Agent = {
 }
 
 export default function AgentCard({agent} : Props) {
+  
   return (
-    <View style={{
+    <View 
+    style={{
         backgroundColor: Colors.white,
         borderRadius: 15,
         minHeight: 180,
