@@ -24,7 +24,8 @@ export default function AgentListComponent({isFeatured} : any) {
             agentName: item.name,
             initialText: item.initialText,
             agentPrompt: item.prompt,
-            agentId: item.id
+            agentId: item.id,
+            imageBanner: item.image
           }
         })} 
         >

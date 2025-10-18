@@ -53,7 +53,8 @@ export default function CreateAgent() {
                             agentName: agentName,
                             initialText: '',
                             agentPrompt: instruction,
-                            agentId: agentId
+                            agentId: agentId,
+                            emoji: emoji
                         }
                     })}
                 }

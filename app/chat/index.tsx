@@ -20,7 +20,7 @@ type Message={
 
 export default function ChatUI() {
     const navigation = useNavigation()
-    const {agentName, agentPrompt, agentId, initialText, chatId} = useLocalSearchParams();
+    const {agentName, agentPrompt, agentId, initialText, chatId, emoji, imageBanner} = useLocalSearchParams();
     const [messages, setMessages] = useState<Message[]>([])
     const [input, setInput] = useState<string>()
     const [file, setFile] = useState<string|null>()
@@ -60,7 +60,10 @@ export default function ChatUI() {
                 docId: docId,
                 agentName, 
                 agentPrompt, 
-                agentId
+                agentId,
+                emoji,
+                imageBanner,
+                lastModified: Date.now(),
             }, {merge: true})
         }
     }
