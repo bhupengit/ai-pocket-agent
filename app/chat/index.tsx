@@ -20,7 +20,7 @@ type Message={
 
 export default function ChatUI() {
     const navigation = useNavigation()
-    const {agentName, agentPrompt, agentId, initialText, chatId, emoji, imageBanner} = useLocalSearchParams();
+    const {agentName, agentPrompt, agentId, initialText, chatId, emoji, imageBanner, messagesList} = useLocalSearchParams();
     const [messages, setMessages] = useState<Message[]>([])
     const [input, setInput] = useState<string>()
     const [file, setFile] = useState<string|null>()
@@ -38,7 +38,18 @@ export default function ChatUI() {
         if(!chatId){
             const id = Date.now().toString()
             setDocId(id)
+        }else{
+            setDocId(chatId.toString())
         }
+        if(messagesList){
+            console.log(messagesList)
+            //@ts-ignore
+            const messageListJson = JSON.parse(messagesList)
+            if(messageListJson?.length>0){
+                setMessages(messageListJson)
+            }
+        }
+        
     }, [])
 
     useEffect(()=>{
@@ -61,12 +72,13 @@ export default function ChatUI() {
                 agentName, 
                 agentPrompt, 
                 agentId,
-                emoji,
-                imageBanner,
+                emoji: emoji? emoji: '',
+                imageBanner: imageBanner? imageBanner : '',
                 lastModified: Date.now(),
             }, {merge: true})
         }
     }
+    console.log(agentId)
     SaveMessages();
     }, [messages])
     const onSendMessage = async () => {
