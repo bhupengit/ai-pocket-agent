@@ -1,9 +1,11 @@
-import { storage } from '@/config/FirebaseConfig';
+import { firestoreDb, storage } from '@/config/FirebaseConfig';
 import Colors from '@/shared/Colors';
 import { AIChatModel } from '@/shared/GlobalApi';
+import { useUser } from '@clerk/clerk-expo';
 import * as Clipboard from 'expo-clipboard';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { doc, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { Camera, Copy, Plus, Send, X } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
@@ -18,10 +20,12 @@ type Message={
 
 export default function ChatUI() {
     const navigation = useNavigation()
-    const {agentName, agentPrompt, agentId, initialText} = useLocalSearchParams();
+    const {agentName, agentPrompt, agentId, initialText, chatId} = useLocalSearchParams();
     const [messages, setMessages] = useState<Message[]>([])
     const [input, setInput] = useState<string>()
     const [file, setFile] = useState<string|null>()
+    const [docId, setDocId] = useState<string|null>()
+    const {user} = useUser()
     useEffect(()=>{
         navigation.setOptions({
             headerShown: true,
@@ -29,8 +33,13 @@ export default function ChatUI() {
             headerRight: () =>(
                 <Plus />
             )
-        })
-    })
+        });
+
+        if(!chatId){
+            const id = Date.now().toString()
+            setDocId(id)
+        }
+    }, [])
 
     useEffect(()=>{
         setInput(initialText.toString())
@@ -41,6 +50,22 @@ export default function ChatUI() {
             ])
         }
     }, [agentPrompt])
+
+    useEffect(()=>{ 
+        const SaveMessages = async () => {
+        if(messages?.length > 0 && docId){
+                await setDoc(doc(firestoreDb, 'chats', docId),{
+                userEmail: user?.primaryEmailAddress?.emailAddress,
+                messages: messages,
+                docId: docId,
+                agentName, 
+                agentPrompt, 
+                agentId
+            }, {merge: true})
+        }
+    }
+    SaveMessages();
+    }, [messages])
     const onSendMessage = async () => {
         if (!input?.trim()) return;
 

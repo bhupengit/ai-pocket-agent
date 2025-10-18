@@ -1,8 +1,10 @@
 import Colors from '@/shared/Colors'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 export default function CreateAgentBanner() {
+    const router = useRouter()
   return (
     <View style={{
         backgroundColor: Colors.primary,
@@ -32,7 +34,9 @@ export default function CreateAgentBanner() {
                     padding: 7,
                     borderRadius: 5,
                     marginTop: 8
-                }}>
+                }}
+                onPress={()=> router.push('/create-agent')}
+                >
                 <Text style={{
                     color: Colors.primary,
                     textAlign: 'center',
