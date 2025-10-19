@@ -54,7 +54,7 @@ export default function ChatUI() {
 
     useEffect(()=>{
         setInput(initialText.toString())
-        if(agentPrompt){
+        if(agentPrompt && !chatId){
             setMessages((prev)=>[
                 ...prev,
                 {role: 'system', content: agentPrompt.toString()}
@@ -110,6 +110,7 @@ export default function ChatUI() {
         const loadingMsg = { role: 'assistant', content: '___loading___' };
         setMessages([...updatedMessages, loadingMsg]);
       
+        console.log('calling AI chat model')
         // Get AI response
         const result = await AIChatModel([...updatedMessages, newMessage]);
         console.log(result.aiResponse);

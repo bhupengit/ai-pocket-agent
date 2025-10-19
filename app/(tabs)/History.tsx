@@ -1,6 +1,7 @@
 import { firestoreDb } from '@/config/FirebaseConfig'
 import Colors from '@/shared/Colors'
 import { useUser } from '@clerk/clerk-expo'
+import { useFocusEffect } from '@react-navigation/native'
 import { useRouter } from 'expo-router'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { MessageCircle } from 'lucide-react-native'
@@ -27,6 +28,14 @@ export default function History() {
   useEffect(()=>{
     user && GetChatHistory()
 }, [user])
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (user) {
+        GetChatHistory()
+      }
+    }, [user])
+  )
 
 
   const GetChatHistory = async()=>{
