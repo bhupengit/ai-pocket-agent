@@ -9,14 +9,14 @@ import EmojiPicker from 'rn-emoji-keyboard'
 
 export default function CreateAgent() {
     const navigation = useNavigation()
-    const [emoji, setEmoji]= useState('👾')
+    const [emoji, setEmoji] = useState('👾')
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [agentName, setAgentName] = useState<string>()
     const [instruction, setInstruction] = useState<string>()
-    const {user} = useUser()
+    const { user } = useUser()
     const router = useRouter()
 
-    useEffect(()=>{
+    useEffect(() => {
         navigation.setOptions({
             headerShown: true,
             headerTitle: 'Create Agent',
@@ -24,8 +24,8 @@ export default function CreateAgent() {
 
     }, [])
 
-    const createNewAgent= async()=>{
-        if(!agentName || !instruction || !emoji){
+    const createNewAgent = async () => {
+        if (!agentName || !instruction || !emoji) {
             Alert.alert('Please enter all details')
             return;
         }
@@ -42,21 +42,23 @@ export default function CreateAgent() {
             [
                 {
                     text: 'Ok',
-                    onPress: ()=>console.log('Ok'),
+                    onPress: () => console.log('Ok'),
                     style: 'cancel'
                 },
                 {
                     text: 'Try Now',
-                    onPress: ()=>{router.push({
-                        pathname: '/chat',
-                        params: {
-                            agentName: agentName,
-                            initialText: '',
-                            agentPrompt: instruction,
-                            agentId: agentId,
-                            emoji: emoji
-                        }
-                    })}
+                    onPress: () => {
+                        router.push({
+                            pathname: '/chat',
+                            params: {
+                                agentName: agentName,
+                                initialText: '',
+                                agentPrompt: instruction,
+                                agentId: agentId,
+                                emoji: emoji
+                            }
+                        })
+                    }
                 }
             ]
         )
@@ -66,69 +68,69 @@ export default function CreateAgent() {
         setEmoji('👾')
     }
 
-  return (
-    <View style={{
-        padding: 20
-    }}>
+    return (
         <View style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            padding: 20
         }}>
-        <TouchableOpacity style={{
-            padding: 15,
-            borderWidth: 1,
-            borderRadius: 15,
-            borderColor: Colors.light_gray,
-            backgroundColor: Colors.white
-        }}
-        onPress={()=>setIsOpen(true)}>
-            <Text style={{
-                fontSize: 30
-            }}>{emoji}</Text>
-        </TouchableOpacity>
-        <EmojiPicker onEmojiSelected={(event)=> setEmoji(event.emoji)} open={isOpen} onClose={() => setIsOpen(false)}/>
-        </View>
-       
-       <View style={{marginTop: 15}}>
-        <Text>Agent/Assistant Name</Text>
-        <TextInput
-         value={agentName}
-         style={styles.input} 
-         placeholder='Agent name'
-         onChangeText={(v)=> setAgentName(v)}
-         />
-       </View>
-       <View style={{
-        paddingVertical: 15,
-       }}>
-        <Text>Instruction</Text>
-        <TextInput 
-            value={instruction}
-            style={[styles.input,{height: 200, textAlignVertical: 'top'}]} 
-            placeholder='Ex. You are a professional teacher' 
-            multiline={true}
-            onChangeText={(v)=> setInstruction(v)}
-            />
-       </View>
+            <View style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <TouchableOpacity style={{
+                    padding: 15,
+                    borderWidth: 1,
+                    borderRadius: 15,
+                    borderColor: Colors.light_gray,
+                    backgroundColor: Colors.white
+                }}
+                    onPress={() => setIsOpen(true)}>
+                    <Text style={{
+                        fontSize: 30
+                    }}>{emoji}</Text>
+                </TouchableOpacity>
+                <EmojiPicker onEmojiSelected={(event) => setEmoji(event.emoji)} open={isOpen} onClose={() => setIsOpen(false)} />
+            </View>
 
-       <TouchableOpacity style={{
-        padding: 15,
-        backgroundColor: Colors.primary,
-        marginTop: 15,
-        borderRadius: 15
-       }}
-       onPress={createNewAgent}
-       >
-        <Text style={styles.button}>Create Agent</Text>
-       </TouchableOpacity>
-      
-    </View>
-  )
+            <View style={{ marginTop: 15 }}>
+                <Text>Agent/Assistant Name</Text>
+                <TextInput
+                    value={agentName}
+                    style={styles.input}
+                    placeholder='Agent name'
+                    onChangeText={(v) => setAgentName(v)}
+                />
+            </View>
+            <View style={{
+                paddingVertical: 15,
+            }}>
+                <Text>Instruction</Text>
+                <TextInput
+                    value={instruction}
+                    style={[styles.input, { height: 200, textAlignVertical: 'top' }]}
+                    placeholder='Ex. You are a professional teacher'
+                    multiline={true}
+                    onChangeText={(v) => setInstruction(v)}
+                />
+            </View>
+
+            <TouchableOpacity style={{
+                padding: 15,
+                backgroundColor: Colors.primary,
+                marginTop: 15,
+                borderRadius: 15
+            }}
+                onPress={createNewAgent}
+            >
+                <Text style={styles.button}>Create Agent</Text>
+            </TouchableOpacity>
+
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-    input:{
+    input: {
         backgroundColor: Colors.white,
         borderRadius: 10,
         padding: 15,
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 5
     },
-    button:{
+    button: {
         color: Colors.white,
         textAlign: 'center',
         fontSize: 18

@@ -6,28 +6,28 @@ import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const menuItems = [
-  { title: "Create Agent", icon: <PlusCircle size={24} color="#7F4BFF" />, path:'/create-agent' },
-  { title: "Explore", icon: <Compass size={24} color="#4B8BFF" />, path:'/(tabs)/Explore' },
-  { title: "My History", icon: <Clock size={24} color="#FFA64C" />, path:'/(tabs)/History' },
+  { title: "Create Agent", icon: <PlusCircle size={24} color="#7F4BFF" />, path: '/create-agent' },
+  { title: "Explore", icon: <Compass size={24} color="#4B8BFF" />, path: '/(tabs)/Explore' },
+  { title: "My History", icon: <Clock size={24} color="#FFA64C" />, path: '/(tabs)/History' },
   { title: "Logout", icon: <LogOut size={24} color="#FF4C4C" />, path: 'logout' },
 ];
 
 export default function ProfileScreen() {
 
-  const {user} = useUser()
+  const { user } = useUser()
   const router = useRouter()
-  const {signOut} = useClerk()
-  const OnMenuClick = async(menuItem: any) =>{
-    if(menuItem.path == 'logout'){
+  const { signOut } = useClerk()
+  const OnMenuClick = async (menuItem: any) => {
+    if (menuItem.path == 'logout') {
       await signOut()
       router.replace('/')
-    }else{
+    } else {
       router.push(menuItem.path)
     }
   }
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      
+
 
       {/* Profile Section */}
       <View style={styles.profileSection}>
@@ -41,7 +41,7 @@ export default function ProfileScreen() {
       {/* Menu */}
       <View style={styles.menu}>
         {menuItems.map((item, index) => (
-          <TouchableOpacity onPress={()=> OnMenuClick(item)} key={index} style={styles.menuItem}>
+          <TouchableOpacity onPress={() => OnMenuClick(item)} key={index} style={styles.menuItem}>
             {item.icon}
             <Text style={styles.menuText}>{item.title}</Text>
           </TouchableOpacity>

@@ -18,7 +18,7 @@ export default function Explore() {
         fontWeight: 'bold',
         marginBottom: 5
       }}>Featured Agent</Text>
-      <AgentListComponent isFeatured={true}/>
+      <AgentListComponent isFeatured={true} />
     </View>
   )
 }

@@ -26,7 +26,7 @@ export default function Index() {
 
   const { isSignedIn } = useAuth()
   const router = useRouter()
-  const {user} = useUser()
+  const { user } = useUser()
   const [isLoading, setIsLoading] = useState(true)
 
   console.log(user?.primaryEmailAddress?.emailAddress)
@@ -36,7 +36,7 @@ export default function Index() {
       //redirect home screen
       router.replace('/(tabs)/Home')
     }
-    if(isSignedIn != undefined){
+    if (isSignedIn != undefined) {
       setIsLoading(false)
     }
   }, [isSignedIn])
@@ -58,10 +58,10 @@ export default function Index() {
         redirectUrl: AuthSession.makeRedirectUri({ scheme: 'aipocketagent' }),
       })
 
-      if(signUp){
-        await setDoc(doc(firestoreDb, 'users', signUp.emailAddress?? ''),{
+      if (signUp) {
+        await setDoc(doc(firestoreDb, 'users', signUp.emailAddress ?? ''), {
           email: signUp.emailAddress,
-          name: signUp.firstName+" "+signUp.lastName,
+          name: signUp.firstName + " " + signUp.lastName,
           joinDate: Date.now(),
           credits: 20
         })
@@ -94,7 +94,7 @@ export default function Index() {
       console.error(JSON.stringify(err, null, 2))
     }
   }, [])
-  
+
   return (
     <View
       style={{
@@ -105,51 +105,51 @@ export default function Index() {
     >
       <Image
         source={require("../assets/images/agentGroup.png")}
-        style={{ 
-          width: Dimensions.get("screen").width*0.85, 
+        style={{
+          width: Dimensions.get("screen").width * 0.85,
           height: 280,
-          resizeMode : "contain"
-      }}
+          resizeMode: "contain"
+        }}
       />
       <View >
-        <Text style={{ 
-        marginVertical: 10,
-        fontSize: 26,
-        fontWeight: "bold",
-        color: Colors.primary,
-        textAlign: "center",
-        fontFamily: "Poppins-Bold",
+        <Text style={{
+          marginVertical: 10,
+          fontSize: 26,
+          fontWeight: "bold",
+          color: Colors.primary,
+          textAlign: "center",
+          fontFamily: "Poppins-Bold",
         }}>Welcome to AI Pocket Agent</Text>
-        <Text style={{ 
+        <Text style={{
           marginHorizontal: 20,
           fontSize: 16,
           color: Colors.gray,
           textAlign: "center",
           fontFamily: "Poppins-Regular",
         }}>Your Ultimate AI Personal Agent to make life easier. Try it taday, Completely Free!</Text>
-       
-      </View>
-      { !isLoading && <TouchableOpacity onPress={onLoginPress} style={{ 
-          marginTop: 50,
-          width: "90%",
-          padding: 15,
-          backgroundColor: Colors.primary,
-          borderRadius: 12,
-        }}>
-          <Text style={{
-            width: "100%",
-            color: Colors.white,
-            textAlign: "center",
-            fontFamily: "Poppins-Bold",
-            fontSize: 16,
-            fontWeight: "bold",
-          }}>Get Started</Text>
-        </TouchableOpacity>}
 
-        {
-          isLoading== undefined &&
-          <ActivityIndicator size={'large'}/>
-        }
+      </View>
+      {!isLoading && <TouchableOpacity onPress={onLoginPress} style={{
+        marginTop: 50,
+        width: "90%",
+        padding: 15,
+        backgroundColor: Colors.primary,
+        borderRadius: 12,
+      }}>
+        <Text style={{
+          width: "100%",
+          color: Colors.white,
+          textAlign: "center",
+          fontFamily: "Poppins-Bold",
+          fontSize: 16,
+          fontWeight: "bold",
+        }}>Get Started</Text>
+      </TouchableOpacity>}
+
+      {
+        isLoading == undefined &&
+        <ActivityIndicator size={'large'} />
+      }
     </View>
   );
 }
